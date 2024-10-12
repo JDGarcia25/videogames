@@ -4,9 +4,90 @@ Dev: Juan David G.
 Date: 13-09-2024
 '''
 from random import randint
+import os
 
-dice1 = randint(1,6)
-dice2 = randint(1,6)
+status_menu = True
 
-print(f"dice1: {dice1} ")
-print(f"dice2: {dice2} ")
+def  main_menu():
+    global status_opts
+    status_opts=True
+    print("::::MAIN MENU::::")
+    print("[1]. Start Game")
+    print("[2]. Help")
+    print("[3]. Exit")
+    
+    while status_opts:
+        opt = int(input("Press any option:"))
+        if opt < 1 or opt > 3:
+            print("Error, Press any option between 1 and 3: ")
+        else:
+            status_opts = False
+        return opt
+
+while status_menu:
+    os.system('clear')
+    op = main_menu()
+    if  op == 1:
+        os.system('clear')
+        print("::::WELCOME TO NUMBER RACE::::")
+        
+        players = int(input("Press number of player [1:4]"))
+        print("***********LEVEL MENU***********")
+        print("[1]. Basic")
+        print("[2]. Intermediate")
+        print("[3]. Advance")
+        print("[4]. Expert")
+        opt= int(input("Press any options:"))
+        
+        if opt == 1:
+            pos = 20
+        elif opt == 2:
+            pos = 30
+        elif opt == 3:
+            pos = 50
+        else:
+            pos = 100
+            
+        # start game
+        status_game = True
+        roll_count = 0
+        roll_acum  = 0
+        
+        while status_game:
+            os.system('clear')
+            
+            key = input("Press any key to roll dice...")
+            
+            dice1 = randint(1,6)
+            dice2 = randint(1,6)
+            
+            print(f"dice1: {dice1} ")
+            print(f"dice2: {dice2} ")
+            total = dice1 + dice2
+            print(f"total roll: {total}")
+            
+            roll_count += 1
+            roll_acum += total
+            print(f"total game: {roll_acum}")
+            
+            if roll_acum >= pos:
+                print("¡¡¡¡YOU WIN, CONTRAGULATIONS!!!!!!!!")
+                status_game = False     
+                
+            os.system('Pause')
+                
+        print("INFO")
+        print(f"Total rolls: {roll_count}")
+        print(f"total dices: {total}")
+        
+        key = input("Press any key to go to the main menu...")
+        
+        
+    elif op == 2:
+        print("Help under construction")
+        key = input("Press any key to go to the main menu...")
+    else:
+        print("See you Later")
+        key = input ("Press any key to exit...")
+    
+
